@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Set up autograder files
+
+cp /autograder/submission/assignment-1*/assignment_1.Rmd /autograder/source/assignment_1.Rmd
+
+cd /autograder/source
+
+# Can also wget here with a server location for an autograder .R script 
+# This is very useful to avoid rebuilding the autograder on Gradescope every time you update the .R script.
+
+Rscript autograde_assignment_1.R

@@ -1,0 +1,49 @@
+---
+title: 'Gradescocpe: Sample Assignment'
+author: "Gov 50"
+output: html_document
+---
+
+**Instructor Note**: This is an example problem set submission for Gradescope. For a problem set, you could describe the topic here. Since answers are hidden below when knitted (`echo=FALSE`), instructors can knit this file to HTML in RMarkdown and distribute that to students as an assignment.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Make sure commonly used student packages are installed via setup.sh
+library(tidyverse)
+```
+
+## Question 1
+
+The `tidyverse` package gives us access to the `us_rent_income` dataset. This question asks students to manipulate that object and save it to an object named `q1`. 
+
+Perform the following steps on `us_rent_income` to create a new `tibble` named `q1`: 
+
+1. Filter to only states with values of `estimate` above 20000.
+2. Then, select only the `GEOID`, `NAME`, and `estimate` columns.
+
+```{r q1}
+q1 <- us_rent_income %>% 
+  filter(estimate > 20000) %>% 
+  select(GEOID, NAME, estimate)
+```
+
+**Final Answer**: a tibble called `q1` with `r nrow(q1)` rows and `r ncol(q1)` columns as specified above.
+
+**Instructor Note**: Instructors could also ask students to read a provided dataset with a function like `read_csv()`. If the autograder needs to access a file, you can include it in the `autograder` folder uploaded to Gradescope. We specify these requirements above to let them know what Gradescope is looking for.
+
+## Question 2
+
+**Instructor Note**: If a question will not be autograded, Gradescope will simply skip it. However, make sure any packages you ask the students to use are still installed in `setup.sh`. This is why we preemptively installed `ggthemes` in `setup.sh`, just to be safe.
+
+For example, this question may require students to make some sort of plot.
+
+```{r q2}
+us_rent_income %>% 
+  ggplot(aes(x = estimate)) + 
+    geom_histogram(binwidth = 500, fill = "darkblue") + 
+    ggthemes::theme_clean() +
+    labs(title = "Example Plot: Income Histogram",
+         x = "Estimate",
+         y = "Count")
+```
